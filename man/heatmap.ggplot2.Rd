@@ -42,9 +42,9 @@ heatmap.ggplot2(eSet, col.clust = TRUE, row.clust = TRUE, col.lab = "",
 
 \item{z.norm}{heatmap colors reflect z-scores rather than original values, can be TRUE if row.scaling is "none"}
 
-\item{cuttree.col}{= 0, #number of clusters for columns, default 0: do not show cluster assignment}
+\item{cuttree.col}{number of clusters for columns, default 0: do not show cluster assignment}
 
-\item{cuttree.row}{= 0, #number of clusters for rows, default 0: do not show cluster assignment}
+\item{cuttree.row}{number of clusters for rows, default 0: do not show cluster assignment}
 
 \item{verbose}{return additional clustred annotation information as well as heatmap}
 
@@ -57,5 +57,30 @@ heatmap.ggplot2(eSet, col.clust = TRUE, row.clust = TRUE, col.lab = "",
 \description{
 \code{heatmap.ggplot2} is the main function to draw and/or save the heatmap from an
 expression set object
+}
+\examples{
+#Use example data #2, for data set information: ?eSet2
+data(eSet2)
+
+#Most basic plot
+p1<-heatmap.ggplot2(eSet2, col.clust = F, row.clust = F)
+
+#More advanced plot
+p2<-heatmap.ggplot2(eSet=eSet2, col.clust = TRUE, row.clust = TRUE,
+col.lab = c("HER2_status", "ER_status", "PR_status", "TN_status"), row.lab = "",
+heatmap.y.text = FALSE, heatmap.x.text = FALSE,
+heatmap.colorlegend.name = "RNASeq_expression",
+title.text = "TCGA BRCA log2 RNA-seq expression, z-score row normalized",
+col.legend.name = c("HER2_status", "ER_status", "PR_status", "TN_status"),
+row.legend.name = "",
+row.scaling = "z-score.capped",
+z.norm = FALSE,
+cuttree.col = 4, cuttree.row = 6,
+verbose = FALSE, show = FALSE)
+
+#Display and saving options
+print(p2) #to display in viewer if working in RStudio
+ggsave(p2, file = "example_plot.pdf")
+ggsave(p2, file = "example_plot.jpg")
 }
 

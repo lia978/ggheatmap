@@ -25,6 +25,32 @@
 #' @param grid.widths numeric vector of length 4 represeting weights of subpanels, leave NA for default
 #' @param show prints the heatmap within execution of the function (TRUE or FALSE)
 #' 
+#' @examples
+#' 
+#' #Use example data #2, for data set information: ?eSet2
+#' data(eSet2)
+#' 
+#' #Most basic plot
+#' p1<-heatmap.ggplot2(eSet2, col.clust = F, row.clust = F)
+#' 
+#' #More advanced plot
+#' p2<-heatmap.ggplot2(eSet=eSet2, col.clust = TRUE, row.clust = TRUE, 
+#' col.lab = c("HER2_status", "ER_status", "PR_status", "TN_status"), row.lab = "", 
+#' heatmap.y.text = FALSE, heatmap.x.text = FALSE,
+#' heatmap.colorlegend.name = "RNASeq_expression",
+#' title.text = "TCGA BRCA log2 RNA-seq expression, z-score row normalized",
+#' col.legend.name = c("HER2_status", "ER_status", "PR_status", "TN_status"), 
+#' row.legend.name = "", 
+#' row.scaling = "z-score.capped", 
+#' z.norm = FALSE, 
+#' cuttree.col = 4, cuttree.row = 6,
+#' verbose = FALSE, show = FALSE)
+#' 
+#' #Display and saving options
+#' print(p2) #to display in viewer if working in RStudio
+#' ggsave(p2, file = "example_plot.pdf")
+#' ggsave(p2, file = "example_plot.jpg")
+#' 
 #' @export 
 
 
@@ -65,17 +91,7 @@ heatmap.ggplot2<-function(eSet,
 	show = FALSE #prints the heatmap within execution of the function
 	){
 
-	require(Biobase)	
-	require(ggplot2)
-	require(reshape2)
-	require(ggdendro)
-	require(grid)
-	require(gridExtra)
-	require(gtable)
-	require(RColorBrewer)
-	require(scales)
-  require(stats)
-
+  #make blank ggplot2 theme
 	theme_none <- theme(
 	  panel.grid = element_blank(),
 	  panel.grid.major = element_blank(),

@@ -2,6 +2,9 @@
 #####
 #This function performs hclust with optimal leaf ordering from S. Monti / D. Gusenleitner
 #####
+
+
+
 hcopt <- function(d, HC=NULL, method = "ward.D", members = NULL){
   require("cba")
   if ( is.null(HC) ) {

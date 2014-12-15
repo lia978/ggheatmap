@@ -1,3 +1,33 @@
+#' heatmap.ggplot2
+#' 
+#' \code{heatmap.ggplot2} is the main function to draw and/or save the heatmap from an 
+#'expression set object
+#'
+#' @param eSet expression set object to plot
+#' @param col.clust perform column-wise hierarchical clustering (TRUE or FALSE)
+#' @param row.clust perform row-wise hierarchical clustering (TRUE or FALSE)
+#' @param col.lab column labels to include: subset of pData colnames character vector
+#' @param row.lab row labels to include: subset of fData colnames character vector
+#' @param heatmap.y.text include y axis labels for heatmap, uses rownames(eSet) (TRUE or FALSE)
+#' @param heatmap.x.text include x axis labels for heatmap, uses colnames(eSet)) (TRUE or FALSE)
+#' @param heatmap.y.text.size text size for y axis labels
+#' @param heatmap.x.text.size text size for x axis labels
+#' @param heatmap.colorlegend.name name for heatmap color legend
+#' @param title.text main title for the plot
+#' @param col.legend.name character vector for subset of col.lab to include in color legend
+#' @param row.legend.name character vector for subset of row.lab to include in color legend
+#' @param row.scaling how should rows be scaled ("none", "quantile", "z-score.all", or "z-score.capped")
+#' @param z.norm heatmap colors reflect z-scores rather than original values, can be TRUE if row.scaling is "none"
+#' @param cuttree.col number of clusters for columns, default 0: do not show cluster assignment
+#' @param cuttree.row number of clusters for rows, default 0: do not show cluster assignment
+#' @param verbose return additional clustred annotation information as well as heatmap
+#' @param grid.heights numeric vector of length 7 representing heights of subpanels, leave NA for default
+#' @param grid.widths numeric vector of length 4 represeting weights of subpanels, leave NA for default
+#' @param show prints the heatmap within execution of the function (TRUE or FALSE)
+#' 
+#' @export 
+
+
 
 #####
 # This function plots a heatmap from expression set object using ggplot2
@@ -5,10 +35,9 @@
 # Customization for RowSideColor and ColSideColor, may include multiple features (options: col.lab, row.lab)
 # required packaged not installed on scc4: ggdendro, url: http://cran.r-project.org/web/packages/ggdendro/index.html
 #to install: 1.)download ggdendro_0.1-15.tar.gz from url
-#			 2.)R CMD INSTALL -l LOCAL_R_DIR ggdendro_0.1-15.tar.gz
+#  		 2.)R CMD INSTALL -l LOCAL_R_DIR ggdendro_0.1-15.tar.gz
 #			 3.)make sure LOCAL_R_DIR is included in R package path: .libPaths( c( .libPaths(), "/path/to/LOCAL_R_DIR") )
 #####
-
 
 heatmap.ggplot2<-function(eSet, 
 	col.clust = TRUE, #column clustering

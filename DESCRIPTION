@@ -10,17 +10,18 @@ Description: ggheatmap is a tool that plots heatmaps tailored for
     ExpressionSet object (Biobase) as the basic input
 URL: https://github.com/lia978/ggheatmap
 Depends:
-    R (>= 2.11.0)
-Imports:
-    Biobase,
+    R (>= 2.11.0),
     ggplot2,
-    reshape2,
     ggdendro,
+    cba,
     grid,
+    proxy,
+    stats,
+    Biobase,
+    reshape2,
     gridExtra,
     gtable,
     RColorBrewer,
-    scales,
-    stats
+    scales
 License: Boston University
 LazyData: true

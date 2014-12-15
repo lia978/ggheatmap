@@ -90,6 +90,18 @@ heatmap.ggplot2<-function(eSet,
 	grid.widths = NA, #numeric vector of length 4 represeting weights of subpanels, leave NA for default
 	show = FALSE #prints the heatmap within execution of the function
 	){
+  
+  
+ # require(Biobase)
+#  require(ggplot2)
+#  require(reshape2)
+#  require(ggdendro)
+#  require(grid)
+#  require(gridExtra)
+#  require(gtable)
+#  require(RColorBrewer)
+#  require(scales)
+ # require(stats)
 
   #make blank ggplot2 theme
 	theme_none <- theme(

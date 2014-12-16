@@ -1,10 +1,6 @@
 ggheatmap
-=========
-
 Instructions for making the ggheatmap package from R scripts using RStudio:
-
-#package.skeleton(...) # sets up basic directory structure for making a package, not personally recommended because you have 
-#to manually edit some of the files that are automatically created
+package.skeleton(...) this sets up basic directory structure for making a package, not personally recommended because you have to manually edit some of the files that are automatically created
 
 library(devtools)
 library(roxygen2)
@@ -16,11 +12,11 @@ in RSstudio: file -> new project -> in existing directory -> select ggheatmap
 in Rstudio: Build -> configure build tools -> package -> generate documentation with  roxygen -> select all
 
 load_all() # this will create description file if not already made
-#will give warning if current description file is not valid
+this will give warning if current description file is not valid
 
 edit DESCRIPTION file (see ggheatmap DESCRIPTION file example)
 
-*a note about "Depends" vs "Imports": Depends attachs the package to the main search path: search(), whereas Imports attaches
+a note about "Depends" vs "Imports": Depends attachs the package to the main search path: search(), whereas Imports attaches
 the package in <imports:packageName>. They say Imports is safer because you gain more control over which function is used 
 if you have two functions from different packages that are of the same name. But for now, I put all my dependencies under
 "Depends", because my package runs into an error if all dependencies are under Imports. 

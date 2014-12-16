@@ -2,14 +2,14 @@
 
 ##Instructions for making the ggheatmap package from R scripts using RStudio:
 
-1.) set up basic R package directory structure: 
+** 1.) set up basic R package directory structure: **
 
 package.skeleton(...) 
 this sets up basic directory structure for making a package, not personally recommended because you have to manually edit some of the files that are automatically created
 
 at minimum you need to create a project folder (e.g. ggheatmap), in that folder create a /R folder and copy over your R scripts to be included in the package
 
-2.) obtain package documentation tools and set up RStudio to automatically write documentation files (Rd files) when you build the package
+** 2.) obtain package documentation tools and set up RStudio to automatically write documentation files (Rd files) when you build the package **
 
 library(devtools)
 
@@ -33,7 +33,7 @@ load_all() #if no warnings, DESCRIPTION file is good, proceed
 In RStudio: Build(a tab right hand side of RStudio) -> check (address the warnings, some are ignorable)
 
 
-3.) add roxygen2 documentation code on top of each of the functions in your R scripts
+** 3.) add roxygen2 documentation code on top of each of the functions in your R scripts **
 
 add #' @export 
 
@@ -64,7 +64,7 @@ For example, in ggheatmap.R I created a general help page for the ggheatmap pack
 separate page pages for each of the datasets associated with the package
 
 
-4.) make source package and share with others
+** 4.) make source package and share with others **
 
 build -> build and reload 
 
@@ -76,3 +76,49 @@ build -> more -> build source package
 
 this will create a .tar.gz file which you can share with others, they can install the package with the command:
 R CMD INSTALL package_name.tar.gz
+
+unfortunately, with this local install, you need to install the dependencies first (look up DESCRIPTION file for dependencies) and install them using install.packages()
+
+Alternative installation:
+
+if your source code is linked to a github repo, you can install directly from github, this should install (most of) the dependencies correctly
+
+library(devtools)
+
+install_github("lia978/ggheatmap")
+
+some dependencies do not automatically install (e.g. bioconductor packages), so you should install them independently
+
+source("http://bioconductor.org/biocLite.R")
+
+biocLite("Biobase")
+
+install_github("lia978/ggheatmap")
+
+try out some examples:
+
+library(ggheatmap)
+
+?ggheatmap
+
+data(eSet2)
+
+p2<-heatmap.ggplot2(eSet=eSet2, col.clust = TRUE, row.clust = TRUE,
+     col.lab = c("HER2_status", "ER_status", "PR_status", "TN_status"), row.lab = "",
+     heatmap.y.text = FALSE, heatmap.x.text = FALSE,
+     heatmap.colorlegend.name = "RNASeq_expression",
+     title.text = "TCGA BRCA log2 RNA-seq expression, z-score row normalized",
+     col.legend.name = c("HER2_status", "ER_status", "PR_status", "TN_status"),
+     row.legend.name = "",
+     row.scaling = "z-score.capped",
+     z.norm = FALSE,
+     cuttree.col = 4, cuttree.row = 6,
+     verbose = FALSE, show = FALSE)
+     
+print(p2)
+     
+ 
+
+
+
+

@@ -2,14 +2,14 @@
 
 ##Instructions for making the ggheatmap package from R scripts using RStudio:
 
-** 1.) set up basic R package directory structure: **
+### 1.) set up basic R package directory structure:
 
 package.skeleton(...) 
 this sets up basic directory structure for making a package, not personally recommended because you have to manually edit some of the files that are automatically created
 
 at minimum you need to create a project folder (e.g. ggheatmap), in that folder create a /R folder and copy over your R scripts to be included in the package
 
-** 2.) obtain package documentation tools and set up RStudio to automatically write documentation files (Rd files) when you build the package **
+### 2.) obtain package documentation tools and set up RStudio to automatically write documentation files (Rd files) when you build the package
 
 library(devtools)
 
@@ -33,7 +33,7 @@ load_all() #if no warnings, DESCRIPTION file is good, proceed
 In RStudio: Build(a tab right hand side of RStudio) -> check (address the warnings, some are ignorable)
 
 
-** 3.) add roxygen2 documentation code on top of each of the functions in your R scripts **
+### 3.) add roxygen2 documentation code on top of each of the functions in your R scripts 
 
 add #' @export 
 
@@ -64,7 +64,7 @@ For example, in ggheatmap.R I created a general help page for the ggheatmap pack
 separate page pages for each of the datasets associated with the package
 
 
-** 4.) make source package and share with others **
+### 4.) make source package and share with others 
 
 build -> build and reload 
 
@@ -79,7 +79,7 @@ R CMD INSTALL package_name.tar.gz
 
 unfortunately, with this local install, you need to install the dependencies first (look up DESCRIPTION file for dependencies) and install them using install.packages()
 
-Alternative installation:
+#### Alternative installation:
 
 if your source code is linked to a github repo, you can install directly from github, this should install (most of) the dependencies correctly
 

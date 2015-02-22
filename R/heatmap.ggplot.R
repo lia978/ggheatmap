@@ -70,6 +70,7 @@
 heatmap.ggplot2<-function(eSet, 
 	brewer.pal.name = "RdBu",#color gradient, see options at RColorBrewer::display.brewer.all()
 	brewer.pal.rev = TRUE, #reverse color gradient
+	brewer.numColors = 11,
 	col.clust = TRUE, #column clustering
 	row.clust = TRUE, #row clustering
 	col.lab = "", #column side labels, character vector of pData colnames subset to include in label
@@ -226,17 +227,17 @@ heatmap.ggplot2<-function(eSet,
   }
 
  	if (brewer.pal.rev == TRUE)
-	heatmap_color_scale<-scale_fill_gradientn(colours=rev(brewer.pal(11,brewer.pal.name)))
+	heatmap_color_scale<-scale_fill_gradientn(colours=rev(brewer.pal(brewer.numColors,brewer.pal.name)))
 	else 
-	heatmap_color_scale<-scale_fill_gradientn(colours=brewer.pal(11,brewer.pal.name))
+	heatmap_color_scale<-scale_fill_gradientn(colours=brewer.pal(brewer.numColors,brewer.pal.name))
 
 
 
 	if (row.scaling == "z-score.capped"){
 		if (brewer.pal.rev == TRUE)
-		heatmap_color_scale<-scale_fill_gradientn(colours=rev(brewer.pal(11,brewer.pal.name)), limits=c(-3,3), oob=squish)
+		heatmap_color_scale<-scale_fill_gradientn(colours=rev(brewer.pal(brewer.numColors,brewer.pal.name)), limits=c(-3,3), oob=squish)
 		else 
-		heatmap_color_scale<-scale_fill_gradientn(colours=brewer.pal(11,brewer.pal.name), limits=c(-3,3), oob=squish)
+		heatmap_color_scale<-scale_fill_gradientn(colours=brewer.pal(brewer.numColors,brewer.pal.name), limits=c(-3,3), oob=squish)
 	}
 
 	M <- ggplot(dfm, aes(x=gene, y=sample)) + 

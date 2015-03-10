@@ -5,9 +5,9 @@
 \title{heatmap.ggplot2}
 \usage{
 heatmap.ggplot2(eSet, brewer.pal.name = "RdBu", brewer.pal.rev = TRUE,
-  brewer.numColors = 11, col.clust = TRUE, row.clust = TRUE,
-  col.lab = "", row.lab = "", heatmap.y.text = FALSE,
-  heatmap.x.text = FALSE, heatmap.y.text.size = 7,
+  brewer.numColors = 11, col.legend.brewer = "", row.legend.brewer = "",
+  col.clust = TRUE, row.clust = TRUE, col.lab = "", row.lab = "",
+  heatmap.y.text = FALSE, heatmap.x.text = FALSE, heatmap.y.text.size = 7,
   heatmap.x.text.size = 6, heatmap.colorlegend.name = "val",
   title.text = "", col.legend.name = "", row.legend.name = "",
   row.scaling = "none", z.norm = FALSE, cuttree.col = 0,
@@ -20,6 +20,12 @@ heatmap.ggplot2(eSet, brewer.pal.name = "RdBu", brewer.pal.rev = TRUE,
 \item{brewer.pal.name}{name of colorbrewer, see options at RColorBrewer::display.brewer.all()}
 
 \item{brewer.pal.rev}{reverse colorbrewer (TRUE or FALSE)}
+
+\item{brewer.numColors}{number of colors for heatmap palette default 11}
+
+\item{col.legend.brewer}{color brewer for column labels}
+
+\item{row.legend.brewer}{color brewer for row labels}
 
 \item{col.clust}{perform column-wise hierarchical clustering (TRUE or FALSE)}
 
@@ -70,7 +76,7 @@ expression set object
 data(eSet2)
 
 #Most basic plot
-p1<-heatmap.ggplot2(eSet2, col.clust = F, row.clust = F)
+p1<-heatmap.ggplot2(eSet2, col.clust = FALSE, row.clust = FALSE)
 
 #More advanced plot
 p2<-heatmap.ggplot2(eSet=eSet2, col.clust = TRUE, row.clust = TRUE,

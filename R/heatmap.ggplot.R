@@ -6,6 +6,9 @@
 #' @param eSet expression set object to plot
 #' @param brewer.pal.name name of colorbrewer, see options at RColorBrewer::display.brewer.all()
 #' @param brewer.pal.rev reverse colorbrewer (TRUE or FALSE)
+#' @param brewer.numColors number of colors for heatmap palette default 11
+#' @param col.legend.brewer color brewer for column labels
+#' @param row.legend.brewer color brewer for row labels
 #' @param col.clust perform column-wise hierarchical clustering (TRUE or FALSE)
 #' @param row.clust perform row-wise hierarchical clustering (TRUE or FALSE)
 #' @param col.lab column labels to include: subset of pData colnames character vector
@@ -33,7 +36,7 @@
 #' data(eSet2)
 #' 
 #' #Most basic plot
-#' p1<-heatmap.ggplot2(eSet2, col.clust = F, row.clust = F)
+#' p1<-heatmap.ggplot2(eSet2, col.clust = FALSE, row.clust = FALSE)
 #' 
 #' #More advanced plot
 #' p2<-heatmap.ggplot2(eSet=eSet2, col.clust = TRUE, row.clust = TRUE, 
@@ -71,6 +74,8 @@ heatmap.ggplot2<-function(eSet,
 	brewer.pal.name = "RdBu",#color gradient, see options at RColorBrewer::display.brewer.all()
 	brewer.pal.rev = TRUE, #reverse color gradient
 	brewer.numColors = 11,
+	col.legend.brewer = "",
+	row.legend.brewer = "",
 	col.clust = TRUE, #column clustering
 	row.clust = TRUE, #row clustering
 	col.lab = "", #column side labels, character vector of pData colnames subset to include in label
@@ -307,6 +312,10 @@ heatmap.ggplot2<-function(eSet,
 		set.seed(57)
 		palette.all.permute<-sample(palette.all, replace = FALSE, size = length(palette.all))
 
+		if (col.legend.brewer != ""){
+			palette.all.permute <-col.legend.brewer
+		}
+
 		LC<-ggplot(meta.c, aes(x=num, y = type, fill = factor(id))) + 
 			geom_tile() + 
 			scale_y_discrete(expand =c(0,0)) + 
@@ -376,8 +385,13 @@ heatmap.ggplot2<-function(eSet,
 		numColors <- length(unique(meta.r$id))
 		#generate number of colored need for all unique factor levels
 		palette.all<-getPalette(numColors) 
+
 		set.seed(57)
 		palette.all.permute<-sample(palette.all, replace = FALSE, size = length(palette.all))
+
+		if (row.legend.brewer != ""){
+			palette.all.permute <-row.legend.brewer
+		}
 
 		LR<-ggplot(meta.r, aes(x=factor(num), y = type, fill = factor(id))) + 
 			geom_tile() + 
